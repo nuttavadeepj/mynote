@@ -14,10 +14,11 @@ export default css`
 
 .inputchange {
   margin: 0;
-  padding: 2px;
+  padding: 2px 5px;
   background-color: #EBD3AC;
   font-size: 20px;
   font-weight: 550;
+  text-align: center;
 }
 
 .textarea {
@@ -30,13 +31,54 @@ export default css`
 }
 
 .textareachange {
-
   box-sizing: border-box;
   width: 100%;
-  height: 30vh;
+  height: 69vh;
   font-size: 16px;
-  padding: 2%;
+  padding: 2% ;
   resize: none;
+}
+
+.box {
+  width: 500px;
+}
+
+disabled {
+  overflow-x: hidden; 
+  overflow-y: scroll; 
+}
+
+.typonopic {
+  marginBottom: 1%;
+  padding: 0 2% 0 4%
+  textAlign: justify;
+  overflow: auto;
+  width: 100%;
+}
+
+.typo {
+  marginBottom: 1%;
+  padding: 0 2% 0 4%
+  textAlign: justify;
+  overflow: auto;
+  width: 70%;
+}
+
+.haveimage{
+  box-sizing: border-box;
+  height: 69vh;
+  width: 100%;
+ 
+}
+
+.noimage {
+  box-sizing: border-box;
+  height: 69vh;
+  width: 100%;
+}
+
+.editnoimage {
+
 }
 
 .NoteBoxTitle {
@@ -56,6 +98,11 @@ input[type="file"] {
   width: 100%;
   height: 30vh;
   border: #999999 dashed 1px;
+}
+
+.imgdec {
+  width: 100%;
+  height: 30vh;
 }
 
 .NoteTitle {

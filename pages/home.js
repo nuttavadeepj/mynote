@@ -1,15 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import {
-  AppBar,
-  Tabs,
-  Tab,
-  Typography,
-  Box
-} from "@material-ui/core";
+import { AppBar, Tabs, Tab, Typography, Box } from "@material-ui/core";
 import Note from "../components/note";
-import Diary from "../components/diary";
+import Report from "../components/report";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -23,7 +17,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={2}>
+        <Box p={1}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -75,16 +69,16 @@ export default function FullWidthTabs() {
           aria-label="full width tabs example"
         >
           <Tab label="NOTE" {...a11yProps(0)} />
-          <Tab label="DIARY" {...a11yProps(1)} />
+          {/* <Tab label="Report" {...a11yProps(1)} /> */}
         </Tabs>
       </AppBar>
 
       <TabPanel value={value} index={0} dir={theme.direction}>
         <Note />
       </TabPanel>
-      <TabPanel value={value} index={1} dir={theme.direction}>
-        <Diary />
-      </TabPanel>
+      {/* <TabPanel value={value} index={1} dir={theme.direction}>
+        <Report />
+      </TabPanel> */}
     </div>
   );
 }

@@ -1,9 +1,11 @@
-import React,{ Fragment, useState } from "react";
+import React,{ Fragment, useState, useEffect } from "react";
 import styles from "../styles/note.js";
 import NoteBox from './notebox'
 import Popup from "./notecreatepopup";
 import { Dialog, IconButton, Slide} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+import axios from "axios";
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -11,8 +13,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function Note() {
 
-  const [open, setOpen] = useState(false);
-
+  const [open, setOpen] = useState(false)
+  const [notes, setNotes] = useState([])
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -20,6 +22,16 @@ export default function Note() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const fetchNotes = async () => {
+    const res = await axios.get('http://localhost:5000/api/note')
+    setNotes(res.data)
+    console.log(res.data)
+  }
+  useEffect(() => {
+		fetchNotes()
+	}, [])
+ console.log(notes)
   
   return (
     <Fragment>
@@ -27,10 +39,11 @@ export default function Note() {
         <div className="NoteBoxTitle">
           <div className="NoteTitle">My Note</div>
         </div>
-        <NoteBox/>
-        <NoteBox/>
-        <NoteBox/>
-        <NoteBox/>
+        {notes.map((el, index) => {
+          return <Fragment key={index}>
+            <NoteBox data={el} fetchNotes={fetchNotes}/>
+          </Fragment>
+        })}
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div className="Addbtn" onClick={handleClickOpen}>
             +
@@ -43,7 +56,7 @@ export default function Note() {
         TransitionComponent={Transition}
         fullWidth={true}
         maxWidth={'lg'}
-       
+        disableBackdropClick	
       >
         <div className="popup">
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
@@ -57,7 +70,7 @@ export default function Note() {
             </IconButton>
           </div>
           <div>
-            <Popup />
+            <Popup onClose={() => setOpen(false)}/>
           </div>
         </div>
       </Dialog><style jsx>{styles}</style>

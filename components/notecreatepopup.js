@@ -1,36 +1,50 @@
 import React, { Fragment, useEffect, useState } from "react";
 import styles from "../styles/note.js";
-import { IconButton, Button } from "@material-ui/core";
+import { IconButton, Button} from "@material-ui/core";
 import { PhotoCamera } from "@material-ui/icons";
 import SaveIcon from "@material-ui/icons/Save";
+import Router from "next/router";
 import axios from "axios";
 
-export default function Popup() {
+export default function Popup({ onClose }) {
   const [image, setImage] = useState(null);
-  const [title, setTitle] = useState();
-  const [content, setContent] = useState();
-  const [imgURL,setImgURL] = useState('')
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [imgURL, setImgURL] = useState("");
 
   const handleChangeImage = (event) => {
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
       setImage(img);
-      setImgURL(URL.createObjectURL(img))
+      setImgURL(URL.createObjectURL(img));
       console.log(img);
     }
   };
   
+
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
-  }
+  };
 
   const handleChangeContent = (event) => {
     setContent(event.target.value);
-  }
-  
-  const createNote = () => {
-		console.log(title, image, content);
-	}
+  };
+
+  const handleSubmit = () => {
+    console.log(title, content, image);
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("image", image);
+
+    axios.post("http://localhost:5000/api/note", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    onClose();
+    Router.reload();
+  };
 
   return (
     <Fragment>
@@ -102,7 +116,7 @@ export default function Popup() {
             style={{ background: "#414C46", color: "white" }}
             size="small"
             startIcon={<SaveIcon />}
-            onClick={createNote}
+            onClick={handleSubmit}
           >
             Save
           </Button>
