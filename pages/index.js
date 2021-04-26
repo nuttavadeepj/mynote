@@ -10,12 +10,12 @@ export default function Home() {
     <Fragment>
     <div className={styles.container}>
       <Head>
-        <title>NoteDiary</title>
+        <title>MyNote</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.main}>
         <div className={styles.titleBox}>
-          <div className={styles.title}>NoteDiary</div>
+          <div className={styles.title}>MyNote</div>
         </div>
         <Image src="/pic1.svg" alt="logo" width={400} height={300} className={styles.pic} onClick={() => router.push('/home')}/>
      </div>
