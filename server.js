@@ -7,7 +7,7 @@ const pool = require("./database/db");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./uploads");
+    cb(null, "/home/nuttavadee/sambashare");
   },
   filename: (req, file, cb) => {
     const ext = file.originalname.split(".")[1];
