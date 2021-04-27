@@ -39,13 +39,13 @@ app.post("/api/note", upload.any("image"), async (req, res) => {
   let conn = await pool.getConnection();
   const data = req.body;
   if (req.files.length !=0) {
-    await conn.query("INSERT INTO note(title, content, image) value (?,?,?)", [
+    await conn.query("INSERT INTO note(title, content, image, date) value (?,?,?, current_date())", [
       data.title,
       data.content,
       req.files[0].filename,
     ]);
   } else {
-    await conn.query("INSERT INTO note(title, content, image) value (?,?,?)", [
+    await conn.query("INSERT INTO note(title, content, image, date) value (?,?,?, current_date())", [
       data.title,
       data.content,
       null,
