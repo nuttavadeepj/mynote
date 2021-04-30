@@ -69,10 +69,7 @@ app.delete('/api/note/:id', async(req, res) => {
   res.status(201).json({ success: true });
 })
 
-app.use("/images", express.static("uploads"));
-
-
-
+app.use("/images", express.static("/home/nuttavadee/sambashare"));
 
 app.listen(5000, () => {
   console.log("Start server at port 5000.");
