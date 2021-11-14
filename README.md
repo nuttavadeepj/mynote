@@ -1,6 +1,9 @@
 ## 'mynote'
 Part of CSC217 Operating System subject. 
-Next.js web application for taking note with the simple function: create, edit, and delete note. Simple web-app for testing in the Trisquel OS.
+
+Next.js web application for taking note with the simple function: create, edit, and delete note. 
+
+Simple web-app for testing in the Trisquel OS.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
